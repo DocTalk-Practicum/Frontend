@@ -7,7 +7,7 @@ export default function Signup() {
 	let [isDoctor, setIsDoctor] = useState(false);
 	return (
 		<div>
-			<div className='container'>
+			<div className='containerSignup'>
 				<div className='info'>
 					<h1>SignUp</h1>
 				</div>
