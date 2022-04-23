@@ -26,7 +26,7 @@ export default function NavbarPatient() {
 
 				<div className='nav-links'>
 					<Link to='/doctorlist'>Doctors</Link>
-					<Link to='/'>Appointment History</Link>
+					<Link to='/appointments/patient'>Appointment History</Link>
 					<Link to='/'>References</Link>
 					<Link to='/profile/patient'>Profile</Link>
 					<Link to='/' onClick={handleLogout}>

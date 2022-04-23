@@ -10,7 +10,7 @@ export default function DoctorModal({ doctor }) {
 			tabIndex='-1'
 			aria-labelledby='exampleModalLabel'
 			aria-hidden='true'>
-			<div className='modal-dialog modal-lg modal-fullscreen-lg-down'>
+			<div className='modal-dialog modal-xl modal-fullscreen-lg-down'>
 				<div className='modal-content'>
 					<div className='modal-header'>
 						<h5 className='modal-title' id='exampleModalLabel'>
