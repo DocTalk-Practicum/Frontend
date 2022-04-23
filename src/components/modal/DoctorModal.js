@@ -1,5 +1,5 @@
 import React from 'react';
-import './popup.css';
+import './modal.css';
 
 export default function DoctorModal({ doctor }) {
 	console.log(doctor);

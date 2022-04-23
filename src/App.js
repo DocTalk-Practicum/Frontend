@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import DoctorAppointment from './pages/appointment/DoctorAppointment';
 import DoctorList from './pages/list/DoctorList';
 import PatientList from './pages/list/PatientList';
 
@@ -18,6 +19,7 @@ function App() {
 					<Route path='/profile/doctor' element={<ProfileDoctor />} />
 					<Route path='/patientlist' element={<PatientList />} />
 					<Route path='/doctorlist' element={<DoctorList />} />
+					<Route path='/appointments/doctor' element={<DoctorAppointment />} />
 				</Routes>
 			</BrowserRouter>
 		</>
