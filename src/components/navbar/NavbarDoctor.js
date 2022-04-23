@@ -26,7 +26,7 @@ export default function NavbarDoctor() {
 
 				<div className='nav-links'>
 					<Link to='/'>Today's Schedule</Link>
-					<Link to='/'>Patients</Link>
+					<Link to='/patientlist'>Patients</Link>
 					<Link to='/'>References</Link>
 					<Link to='/profile/doctor'>Profile</Link>
 					<Link to='/' onClick={handleLogout}>Logout</Link>
