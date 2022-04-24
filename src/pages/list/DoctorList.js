@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import DoctorModal from '../../components/modal/DoctorModal'
 import NavbarPatient from '../../components/navbar/NavbarPatient';
 
@@ -56,13 +57,13 @@ export default function DoctorList() {
 								</div>
 								<div className='mt-4 apointment'>
 									{' '}
-									<a href='/bookappointment/{{doctor.id}}'>
+									<Link to={`/bookappointment/${doctor.id}`}>
 										<button
 											className='btn btn'
 											style={{ backgroundColor: '#C1DEAE' }}>
 											Book Appointment
 										</button>{' '}
-									</a>
+									</Link>
 								</div>
 							</div>
 						</div>
