@@ -26,10 +26,7 @@ function App() {
 						path='/appointments/patient'
 						element={<PatientAppointment />}
 					/>
-					<Route
-						path='/bookAppointment/:id'
-						element={<BookAppointment />}
-					/>
+					<Route path='/bookAppointment/:id' element={<BookAppointment />} />
 				</Routes>
 			</BrowserRouter>
 		</>
