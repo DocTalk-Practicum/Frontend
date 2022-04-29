@@ -3,7 +3,7 @@
     position: relative;
     z-index: 1;
     background: #FFFFFF;
-    max-width: 300px;
+    max-width: 400px;
     margin: 0 auto 100px;
     padding: 30px;
     border-top-left-radius: 3px;
@@ -69,7 +69,7 @@
   .containerLogin {
     position: relative;
     z-index: 1;
-    max-width: 300px;
+    max-width: 400px;
     margin: 0 auto;
   }
   .containerLogin:before, .containerLogin:after {

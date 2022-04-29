@@ -27,14 +27,23 @@ export default function Signup() {
 					<input type='number' name='age' id='age' placeholder='Age' />
 					<input type='text' name='gender' id='gender' placeholder='Gender' />
 					<input type='password' name='password' placeholder='Password' />
-					<div>
-						<label htmlFor='is_doctor'>Are you a Doctor?</label>
+					<div
+						style={{
+							display: 'flex',
+							alignItems: 'center',
+							alignContent: 'center'
+						}}>
+						<label style={{ width: '250px' }} htmlFor='is_doctor'>
+							Are you a Doctor?
+						</label>
 						<input
 							type='checkbox'
 							style={{
-								width: '24% !important',
-								paddingTop: '0px !important',
+								// width: '24% !important',
+								// paddingTop: '0px !important',
+								margin: '0px',
 								marginTop: '2px !important'
+								// display: 'inline'
 							}}
 							name='is_doctor'
 							id='is_doctor'
