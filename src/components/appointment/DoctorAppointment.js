@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
 import AppointmentModal from '../../components/modal/AppointmentModal';
-import NavbarDoctor from '../../components/navbar/NavbarDoctor';
 import imgSrc from '../../assets/images/user.png';
 import { Link } from 'react-router-dom';
 
@@ -23,8 +22,7 @@ export default function DoctorAppointment() {
 	const [modalAppointment, setModalAppointment] = useState({});
 
 	return (
-		<div>
-			<NavbarDoctor />
+		<>
 			<AppointmentModal appointment={modalAppointment} />
 			<div className='p-10 bg-surface-secondary'>
 				<div className='container'>
@@ -48,8 +46,8 @@ export default function DoctorAppointment() {
 									</tr>
 								</thead>
 								<tbody>
-									{appointments.map(appointment => (
-										<tr>
+									{appointments.map((appointment, index) => (
+										<tr key={index}>
 											<td data-label='Job Title'>
 												{' '}
 												<img
@@ -133,6 +131,6 @@ export default function DoctorAppointment() {
 					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 }

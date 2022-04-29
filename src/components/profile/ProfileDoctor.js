@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './profile.css';
 import docImg from '../../assets/images/doc_profle.png';
-import NavbarDoctor from '../../components/navbar/NavbarDoctor';
 
 export default function ProfileDoctor() {
 	const [doctor, setDoctor] = useState({
@@ -16,7 +15,6 @@ export default function ProfileDoctor() {
 	});
 	return (
 		<div>
-			<NavbarDoctor />
 			<div className='container rounded bg-white mt-5 mb-5'>
 				<div className='row'>
 					<div className='col-md-3 border-right'>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import DoctorModal from '../../components/modal/DoctorModal'
-import NavbarPatient from '../../components/navbar/NavbarPatient';
+import DoctorModal from '../../components/modal/DoctorModal';
 
 export default function DoctorList() {
 	const [doctors, setDoctors] = useState([
@@ -16,7 +15,6 @@ export default function DoctorList() {
 
 	return (
 		<>
-      <NavbarPatient />
 			<DoctorModal doctor={modalDoctor} />
 			<div className='container mt-5 mb-5'>
 				<div className='d-flex justify-content-between mb-3'>
@@ -57,7 +55,7 @@ export default function DoctorList() {
 								</div>
 								<div className='mt-4 apointment'>
 									{' '}
-									<Link to={`/bookappointment/${doctor.id}`}>
+									<Link to={`/patient/bookappointment/${doctor.id}`}>
 										<button
 											className='btn btn'
 											style={{ backgroundColor: '#C1DEAE' }}>

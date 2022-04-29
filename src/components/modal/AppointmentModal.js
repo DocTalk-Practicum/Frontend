@@ -3,7 +3,7 @@ import './modal.css'
 
 export default function AppointmentModal({ appointment }) {
 	return (
-		<div>
+		<>
 			<div
 				className='modal fade'
 				id='AppointmentModal'
@@ -140,7 +140,7 @@ export default function AppointmentModal({ appointment }) {
 													</td>
 												</tr>
 												<tr>
-													<form enctype='multipart/form-data'>
+													<form encType='multipart/form-data'>
 														<input
 															type='text'
 															name='app_id'
@@ -200,6 +200,6 @@ export default function AppointmentModal({ appointment }) {
 					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 }

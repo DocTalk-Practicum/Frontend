@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
-import NavbarPatient from '../../components/navbar/NavbarPatient';
 import imgSrc from '../../assets/images/user.png';
 import DoctorModal from '../../components/modal/DoctorModal';
 
@@ -21,7 +20,6 @@ export default function PatientAppointment() {
 	const [modalDoctor, setModalDoctor] = useState({});
 	return (
 		<div>
-			<NavbarPatient />
 			<DoctorModal doctor={modalDoctor} />
 			<div className='p-10 bg-surface-secondary'>
 				<div className='container'>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import NavbarDoctor from '../../components/navbar/NavbarDoctor';
 
 export default function PatientList() {
 	const [patients, setPatients] = useState([
@@ -15,7 +14,6 @@ export default function PatientList() {
 
 	return (
 		<>
-			<NavbarDoctor />
 			<div className='container'>
 				<div
 					className='row header'

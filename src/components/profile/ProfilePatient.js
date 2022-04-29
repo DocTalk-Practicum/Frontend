@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './profile.css';
-import NavbarPatient from '../../components/navbar/NavbarPatient';
 
 export default function ProfilePatient() {
 	const [user, setUser] = useState({
@@ -12,7 +11,6 @@ export default function ProfilePatient() {
 	});
 	return (
 		<>
-			<NavbarPatient />
 			<div className='container rounded bg-white mt-5 mb-5'>
 				<div className='row'>
 					<div className='col-md-3 border-right'>

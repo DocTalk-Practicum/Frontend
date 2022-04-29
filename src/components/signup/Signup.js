@@ -106,7 +106,7 @@ export default function Signup() {
 					<button type='submit'>Sign Up</button>
 					<p className='message'>
 						Already registered?
-						<Link to='/login'> Sign In</Link>
+						<Link to='/'> Sign In</Link>
 					</p>
 				</form>
 			</div>

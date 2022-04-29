@@ -1,13 +1,11 @@
 import React from 'react';
 import './bookAppt.css';
 import { useParams } from 'react-router-dom';
-import NavbarPatient from '../../components/navbar/NavbarPatient';
 
 export default function BookAppointment() {
 	const {id} = useParams();
 	return (
 		<div>
-			<NavbarPatient />
 			<div className='contact_form'>
 				<div className='container'>
 					<div className='row'>
