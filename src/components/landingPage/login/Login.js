@@ -1,13 +1,11 @@
 import React from 'react';
 import './login.css';
 import { Link } from 'react-router-dom';
-import loginImage from '../../assets/images/patient-login.png';
-import NavbarPatient from '../../components/navbar/NavbarPatient';
+import loginImage from '../../../assets/images/patient-login.png';
 
 export default function Login() {
 	return (
 		<div>
-      <NavbarPatient />
 			<div className='containerLogin'>
 				<div className='info'>
 					<h1>Login</h1>
