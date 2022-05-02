@@ -8,6 +8,9 @@ import Patient from './pages/Patient';
 import Signup from './components/signup/Signup';
 import { UserProvider } from './context/User.context';
 
+import axios from 'axios';
+axios.defaults.baseURL = 'http://localhost:8000'
+
 function App() {
 	return (
 		<>
