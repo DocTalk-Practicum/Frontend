@@ -7,6 +7,8 @@ import Doctor from './pages/Doctor';
 import Patient from './pages/Patient';
 import Signup from './components/signup/Signup';
 import { UserProvider } from './context/User.context';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 import axios from 'axios';
 axios.defaults.baseURL = 'http://localhost:8000'

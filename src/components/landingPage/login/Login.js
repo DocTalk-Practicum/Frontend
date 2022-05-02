@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './login.css';
 import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
 import loginImage from '../../../assets/images/patient-login.png';
 
@@ -42,15 +41,15 @@ export default function Login() {
 			}
 		} catch (err) {
 			console.log(err);
-      toast.error('Invalid Credentials', {
-        position: 'top-center',
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined
-      });
+			toast.error('Invalid Credentials', {
+				position: 'top-center',
+				autoClose: 1000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined
+			});
 		}
 	};
 
