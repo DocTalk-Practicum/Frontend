@@ -2,7 +2,7 @@ import React from 'react';
 import './modal.css';
 
 export default function DoctorModal({ doctor }) {
-	console.log(doctor);
+	// console.log(doctor);
 	return (
 		<div
 			className='modal fade'

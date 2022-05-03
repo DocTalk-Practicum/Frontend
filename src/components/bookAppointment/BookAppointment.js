@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './bookAppt.css';
 import { useParams } from 'react-router-dom';
 
 export default function BookAppointment() {
-	const {id} = useParams();
+	const { id } = useParams();
+  const {formData, setFormData} = useState({
+    
+  })
 	return (
 		<div>
 			<div className='contact_form'>

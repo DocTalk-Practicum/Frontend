@@ -6,7 +6,6 @@ import NotFound from './components/NotFound';
 import Doctor from './pages/Doctor';
 import Patient from './pages/Patient';
 import Signup from './components/signup/Signup';
-import { UserProvider } from './context/User.context';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -18,7 +17,6 @@ function App() {
 		<>
 			<BrowserRouter>
 				<ProfileProvider>
-					<UserProvider>
 						<Routes>
 							<Route
 								exact
@@ -51,7 +49,6 @@ function App() {
 							<Route path='/signup' element={<Signup />} />
 							<Route path='*' element={<NotFound />}></Route>
 						</Routes>
-					</UserProvider>
 				</ProfileProvider>
 			</BrowserRouter>
 		</>

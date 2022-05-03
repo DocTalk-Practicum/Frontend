@@ -9,8 +9,7 @@ export default function Signup() {
 	const [isDoctor, setIsDoctor] = useState(false);
 	const [files, setFiles] = useState([]);
 	const [patientLogin, setPatientLogin] = useState({
-		firstname: '',
-		lastName: '',
+		name: '',
 		email: '',
 		password: '',
 		phn: 0,
@@ -102,18 +101,10 @@ export default function Signup() {
 					onSubmit={e => handleSignup(e)}>
 					<input
 						type='text'
-						name='fname'
-						placeholder='First Name'
+						name='name'
+						placeholder='Name'
 						onChange={e =>
-							setPatientLogin({ ...patientLogin, firstname: e.target.value })
-						}
-					/>
-					<input
-						type='text'
-						name='lname'
-						placeholder='Last Name'
-						onChange={e =>
-							setPatientLogin({ ...patientLogin, lastname: e.target.value })
+							setPatientLogin({ ...patientLogin, name: e.target.value })
 						}
 					/>
 					<input

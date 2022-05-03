@@ -5,8 +5,9 @@ import { useProfile } from './../context/Profile.context';
 
 export const AdminRoute = ({ ...routeProps }) => {
 	const { user } = useUser();
+	console.log(user);
 
-	if (user && !user.role) {
+	if (!user) {
 		return <Navigate to='/' />;
 	}
 	return <Route {...routeProps} />;
@@ -14,6 +15,7 @@ export const AdminRoute = ({ ...routeProps }) => {
 
 export const PrivateRoute = ({ ...routeProps }) => {
 	const { profile, isLoading } = useProfile();
+	console.log(profile);
 
 	if (isLoading && !profile) {
 		return <div>Loading...</div>;
@@ -27,14 +29,10 @@ export const PrivateRoute = ({ ...routeProps }) => {
 
 export const PublicRoute = ({ children }) => {
 	const { profile, isLoading } = useProfile();
-	const { user } = useUser();
-
-	if (isLoading && !profile) {
-		return <div>Loading....</div>;
-	}
-	if (profile && !isLoading && user && user.role === 'doctor') {
+	
+	if (profile && !isLoading && !profile.isPatient) {
 		return <Navigate to='/doctor' />;
-	} else if (profile && !isLoading && user && user.role === 'patient') {
+	} else if (profile && !isLoading && profile.isPatient) {
 		return <Navigate to='/patient' />;
 	}
 	return <div>{children}</div>;

@@ -17,8 +17,15 @@ export default function Login() {
 			const res = await axios.post('/auth/login', formdata);
 			// console.log(res.data.token);
 			if (res.status === 200) {
-				localStorage.setItem('doctalk', res.data.token);
-				window.location.href = '/doctor';
+				localStorage.setItem(
+					'doctalk',
+					JSON.stringify({ token: res.data.token, isPatient: res.data.patient })
+				);
+				if (res.data.patient) {
+					window.location.href = '/patient';
+				} else {
+					window.location.href = '/doctor';
+				}
 				toast.success('Logged in successfully', {
 					position: 'top-center',
 					autoClose: 3000,
@@ -65,7 +72,7 @@ export default function Login() {
 				<div className='thumbnail'>
 					<img src={loginImage} alt='patient' />
 				</div>
-				<form className='login-form' onSubmit={e => handleSubmit(e)}>
+				<form className='login-form' onSubmit={handleSubmit}>
 					<input
 						type='email'
 						name='email'

@@ -1,25 +1,31 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import AppointmentModal from '../../components/modal/AppointmentModal';
 import imgSrc from '../../assets/images/user.png';
 import { Link } from 'react-router-dom';
 
 export default function DoctorAppointment() {
-	const [appointments, setAppointments] = useState([
-		{
-			user: {
-				name: 'test',
-				age: 19,
-				email: 'test@gmail.com',
-				phone: 12312498234
-			},
-			slot_time: '12:00',
-			id: '2213123413',
-			room_id: '234324234'
-		}
-	]);
+	const [appointments, setAppointments] = useState([]);
 
 	const [modalAppointment, setModalAppointment] = useState({});
+
+	useEffect(() => {
+		async function fetchAppt() {
+			const data = JSON.parse(localStorage.getItem('doctalk'));
+			// console.log(data);
+			const res = await axios.get('/doctor/getAppointments', {
+				headers: {
+					Authorization: `Bearer ${data.token}`
+				}
+			});
+			// console.log(res);
+			if (res.status === 200 && res.data.appointments) {
+				setAppointments(res.data.appointments);
+			}
+		}
+		fetchAppt();
+	}, []);
 
 	return (
 		<>
@@ -46,85 +52,89 @@ export default function DoctorAppointment() {
 									</tr>
 								</thead>
 								<tbody>
-									{appointments.map((appointment, index) => (
-										<tr key={index}>
-											<td data-label='Job Title'>
-												{' '}
-												<img
-													alt='...'
-													src={imgSrc}
-													className='avatar avatar-sm rounded-circle me-2'
-												/>{' '}
-												<a className='text-heading font-semibold' href='#'>
+									{appointments.length > 0 ? (
+										appointments.map((appointment, index) => (
+											<tr key={index}>
+												<td data-label='Job Title'>
 													{' '}
-													{appointment.user.name}{' '}
-												</a>{' '}
-											</td>
-											<td data-label='Email'>
-												{' '}
-												<span>{appointment.user.age}</span>{' '}
-											</td>
-											<td data-label='Email'>
-												{' '}
-												<span>{appointment.slot_time}</span>{' '}
-											</td>
-											<td data-label='Phone'>
-												{' '}
-												<a className='text-current' href='#' onClick=''>
-													{appointment.user.email}
-												</a>{' '}
-											</td>
-											<td data-label='Lead Score'>
-												{' '}
-												<a
-													className='text-current'
-													href={{ tel: appointment.user.phone }}>
-													{appointment.user.phone}
-												</a>{' '}
-											</td>
-											<td data-label=''>
-												{' '}
-												<button
-													data-bs-toggle='modal'
-													data-bs-target='#AppointmentModal'
-													className='btn btn'
-													style={{
-														fontSize: '12px',
-														padding: '5px !important',
-														backgroundColor: 'transparent !important',
-														color: '#219F94'
-													}}
-													onClick={() => setModalAppointment(appointment)}>
-													View
-												</button>{' '}
-											</td>
-											<td data-label=''>
-												{' '}
-												<Link
-													className='text-current'
-													target='_blank'
-													to={`/room/${appointment.room_id}`}
-													style={{ color: '#219F94 !important' }}>
-													Join
-												</Link>{' '}
-											</td>
-											<td data-label=''>
-												{' '}
-												<Link
-													className='text-current'
-													to={`/referdoctors/${appointment.id}`}>
+													<img
+														alt='...'
+														src={imgSrc}
+														className='avatar avatar-sm rounded-circle me-2'
+													/>{' '}
+													<a className='text-heading font-semibold' href='#'>
+														{' '}
+														{appointment.patient.name}{' '}
+													</a>{' '}
+												</td>
+												<td data-label='Email'>
+													{' '}
+													<span>{appointment.patient.age}</span>{' '}
+												</td>
+												<td data-label='Email'>
+													{' '}
+													<span>{appointment.time}</span>{' '}
+												</td>
+												<td data-label='Phone'>
+													{' '}
+													<a className='text-current' href='#'>
+														{appointment.patient.email}
+													</a>{' '}
+												</td>
+												<td data-label='Lead Score'>
+													{' '}
+													<a
+														className='text-current'
+														href={{ tel: appointment.patient.phn }}>
+														{appointment.patient.phn}
+													</a>{' '}
+												</td>
+												<td data-label=''>
+													{' '}
 													<button
+														data-bs-toggle='modal'
+														data-bs-target='#AppointmentModal'
 														className='btn btn'
 														style={{
-															fontSize: '10px;padding:5px !important',
-															backgroundColor: '#C1DEAE !important'
-														}}>
-														Refer
-													</button>
-												</Link>{' '}
-											</td>
-										</tr>
-									))}
+															fontSize: '12px',
+															padding: '5px !important',
+															backgroundColor: 'transparent !important',
+															color: '#219F94'
+														}}
+														onClick={() => setModalAppointment(appointment)}>
+														View
+													</button>{' '}
+												</td>
+												<td data-label=''>
+													{' '}
+													<Link
+														className='text-current'
+														target='_blank'
+														to={`/room/${appointment.room_id}`}
+														style={{ color: '#219F94 !important' }}>
+														Join
+													</Link>{' '}
+												</td>
+												<td data-label=''>
+													{' '}
+													<Link
+														className='text-current'
+														to={`/referdoctors/${appointment.id}`}>
+														<button
+															className='btn btn'
+															style={{
+																fontSize: '10px;padding:5px !important',
+																backgroundColor: '#C1DEAE !important'
+															}}>
+															Refer
+														</button>
+													</Link>{' '}
+												</td>
+											</tr>
+										))
+									) : (
+										<div className='p-5'>No appointments</div>
+									)}
 								</tbody>
 							</table>
 						</div>
