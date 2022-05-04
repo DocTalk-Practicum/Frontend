@@ -1,8 +1,9 @@
+/* eslint-disable react/jsx-no-target-blank */
 import React from 'react';
 import './modal.css';
 
 export default function DoctorModal({ doctor }) {
-	// console.log(doctor);
+	console.log(doctor);
 	return (
 		<div
 			className='modal fade'
@@ -41,7 +42,7 @@ export default function DoctorModal({ doctor }) {
 															Clinic Name
 														</span>{' '}
 														<span className='subheadings' id='info_clinic_name'>
-															Cairo Hospital
+															{doctor.clinicName}
 														</span>{' '}
 													</div>
 												</td>
@@ -52,7 +53,7 @@ export default function DoctorModal({ doctor }) {
 															Speciality
 														</span>{' '}
 														<span className='subheadings' id='info_speciality'>
-															Ear, nose, throat
+															{doctor.speciality}
 														</span>{' '}
 													</div>
 												</td>
@@ -68,7 +69,7 @@ export default function DoctorModal({ doctor }) {
 														<span
 															className='subheadings'
 															id='info_clinic_address'>
-															52, Maria Block, Victoria Road, CA USA
+															{doctor.clinicAddress}
 														</span>{' '}
 													</div>
 												</td>
@@ -79,8 +80,7 @@ export default function DoctorModal({ doctor }) {
 															Doctor Description
 														</span>{' '}
 														<span className='subheadings' id='info_doc_desc'>
-															Lorem ipsum is placeholder text commonly used in
-															the graphic, print.
+															{doctor.description}
 														</span>
 													</div>
 												</td>
@@ -97,7 +97,10 @@ export default function DoctorModal({ doctor }) {
 														</span>{' '}
 														<span className='d-flex flex-row'>
 															{' '}
-															<a href='/' id='info_clinic_loc' target='_blank'>
+															<a
+																href={doctor.clinicMap}
+																id='info_clinic_loc'
+																target='_blank'>
 																{' '}
 																<img
 																	src='https://img.icons8.com/color/100/000000/google-maps.png'
@@ -113,13 +116,10 @@ export default function DoctorModal({ doctor }) {
 										</tbody>
 									</table>
 									<div id='extra_documents_space'>
-										<span className='heading d-block'>Extra Documents</span>
-									</div>
-									<div id='tr_documents_space'>
-										<span className='heading d-block'>Test Reports</span>
-									</div>
-									<div id='presc_documents_space'>
-										<span className='heading d-block'>Prescriptions</span>
+										<span className='heading d-block'>Documents</span>
+										<a href={`http://localhost:8000${doctor.documents}`} target='_blank'>
+											<img src={`http://localhost:8000${doctor.documents}`} style={{maxWidth: '30%'}} alt='' />
+										</a>
 									</div>
 								</div>
 							</div>
@@ -129,7 +129,7 @@ export default function DoctorModal({ doctor }) {
 										{' '}
 										<img
 											id='info_profile_pic'
-											src='https://i.imgur.com/VfRSLTm.jpg'
+											src={`http://localhost:8000${doctor.pic}`}
 											width='100'
 											style={{ height: '100px' }}
 											className='rounded-circle img-thumbnail'
@@ -138,7 +138,7 @@ export default function DoctorModal({ doctor }) {
 										<span
 											className='d-block mt-3 font-weight-bold'
 											id='info_doc_name'>
-											Dr. Samsung Philip.
+											{doctor.name}
 										</span>{' '}
 									</div>
 									<div className='about-doctor'>
@@ -155,7 +155,7 @@ export default function DoctorModal({ doctor }) {
 																className='subheadings'
 																style={{ fontSize: '8px' }}
 																id='info_doc_id'>
-																1706200
+																{doctor._id}
 															</span>{' '}
 														</div>
 													</td>
@@ -166,7 +166,7 @@ export default function DoctorModal({ doctor }) {
 																Phone No
 															</span>{' '}
 															<span className='subheadings' id='info_doc_phn'>
-																7276775259
+																{doctor.phn}
 															</span>{' '}
 														</div>
 													</td>
@@ -179,7 +179,7 @@ export default function DoctorModal({ doctor }) {
 																Email
 															</span>{' '}
 															<span className='subheadings' id='info_doc_email'>
-																nikhilsmankani@gmail.com
+																{doctor.email}
 															</span>{' '}
 														</div>
 													</td>

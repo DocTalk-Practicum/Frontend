@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import DoctorModal from '../../components/modal/DoctorModal';
+import imgSrc from '../../assets/images/doc_profle.png'
 
 export default function DoctorList() {
 	const [doctors, setDoctors] = useState([]);
@@ -16,7 +17,6 @@ export default function DoctorList() {
 					Authorization: `Bearer ${token}`
 				}
 			});
-			// console.log(res);
 			if (res.status === 200 && res.data.doctors) {
 				setDoctors(res.data.doctors);
 			}
@@ -40,7 +40,7 @@ export default function DoctorList() {
 									<div className='img mb-2'>
 										{' '}
 										<img
-											src={doctor.photoUrl}
+											src={doctor.pic!== '' ? `http://localhost:8000${doctor.pic}` : imgSrc}
 											width='70'
 											style={{
 												minWidth: '80px',
