@@ -40,7 +40,7 @@ export default function Signup() {
 				});
 				if (res.status === 200) {
 					localStorage.setItem('doctalk', res.data.token);
-					window.location.href = '/doctor';
+					window.location.href('/doctor');
 					toast.success('Registered successfully', {
 						position: 'top-center',
 						autoClose: 3000,
@@ -57,7 +57,7 @@ export default function Signup() {
 				});
 				if (res.status === 200) {
 					localStorage.setItem('doctalk', res.data.token);
-					window.location.href = '/patient';
+					window.location.href('/patient');
 					toast.success('Registered successfully', {
 						position: 'top-center',
 						autoClose: 3000,

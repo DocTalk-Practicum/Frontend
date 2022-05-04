@@ -12,14 +12,14 @@ export default function DoctorAppointment() {
 
 	useEffect(() => {
 		async function fetchAppt() {
-			const data = JSON.parse(localStorage.getItem('doctalk'));
-			// console.log(data);
+			const token = localStorage.getItem('doctalk');
+			console.log(token);
 			const res = await axios.get('/doctor/getAppointments', {
 				headers: {
-					Authorization: `Bearer ${data.token}`
+					Authorization: `Bearer ${token}`
 				}
 			});
-			// console.log(res);
+			// console.log(res.data.appointments);
 			if (res.status === 200 && res.data.appointments) {
 				setAppointments(res.data.appointments);
 			}
@@ -29,7 +29,9 @@ export default function DoctorAppointment() {
 
 	return (
 		<>
-			<AppointmentModal appointment={modalAppointment} />
+			{modalAppointment !== {} && (
+				<AppointmentModal appointment={modalAppointment} />
+			)}
 			<div className='p-10 bg-surface-secondary'>
 				<div className='container'>
 					<div className='card'>
@@ -64,12 +66,12 @@ export default function DoctorAppointment() {
 													/>{' '}
 													<a className='text-heading font-semibold' href='#'>
 														{' '}
-														{appointment.patient.name}{' '}
+														{appointment.patientId.name}{' '}
 													</a>{' '}
 												</td>
 												<td data-label='Email'>
 													{' '}
-													<span>{appointment.patient.age}</span>{' '}
+													<span>{appointment.patientId.age}</span>{' '}
 												</td>
 												<td data-label='Email'>
 													{' '}
@@ -78,15 +80,15 @@ export default function DoctorAppointment() {
 												<td data-label='Phone'>
 													{' '}
 													<a className='text-current' href='#'>
-														{appointment.patient.email}
+														{appointment.patientId.email}
 													</a>{' '}
 												</td>
 												<td data-label='Lead Score'>
 													{' '}
 													<a
 														className='text-current'
-														href={{ tel: appointment.patient.phn }}>
-														{appointment.patient.phn}
+														href={{ tel: appointment.patientId.phn }}>
+														{appointment.patientId.phn}
 													</a>{' '}
 												</td>
 												<td data-label=''>

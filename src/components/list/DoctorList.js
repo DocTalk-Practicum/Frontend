@@ -9,11 +9,11 @@ export default function DoctorList() {
 
 	useEffect(() => {
 		async function fetchAppt() {
-			const data = JSON.parse(localStorage.getItem('doctalk'));
-			console.log(data);
+			const token = localStorage.getItem('doctalk');
+			// console.log(data);
 			const res = await axios.get('/doctor/getAllDoctors', {
 				headers: {
-					Authorization: `Bearer ${data.token}`
+					Authorization: `Bearer ${token}`
 				}
 			});
 			// console.log(res);

@@ -16,24 +16,18 @@ export const UserProvider = ({ children }) => {
 	const [isUserLoading, setIsUserLoading] = useState(true);
 
 	const loadUser = useCallback(async () => {
-		const data = JSON.parse(localStorage.getItem('doctalk'));
-		// console.log(data);
-		const decodedJwt = jwt_decode(data.token);
+		const token = localStorage.getItem('doctalk');
 
-		const url = data.isPatient
-			? `/patient/getPatientById/${decodedJwt.id}`
-			: `/doctor/getDoctorById/${decodedJwt.id}`;
-
-		if (data) {
+		if (token) {
 			await axios
-				.get(url, {
+				.get(`/auth/profile`, {
 					headers: {
-						Authorization: `Bearer ${data.token}`
+						Authorization: `Bearer ${token}`
 					}
 				})
-				.then(result => {
-					console.log(result.data.user);
-					setUser(result.data.user);
+				.then(res => {
+					console.log(res.data.user);
+					setUser(res.data.user);
 					setIsUserLoading(false);
 				})
 				.catch(err => {

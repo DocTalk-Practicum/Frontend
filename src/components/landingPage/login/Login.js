@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './login.css';
 import { toast, ToastContainer } from 'react-toastify';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import loginImage from '../../../assets/images/patient-login.png';
 
 export default function Login() {
+	const navigate = useNavigate();
 	const [formdata, setFormdata] = useState({
 		email: '',
 		password: ''
@@ -17,14 +18,11 @@ export default function Login() {
 			const res = await axios.post('/auth/login', formdata);
 			// console.log(res.data.token);
 			if (res.status === 200) {
-				localStorage.setItem(
-					'doctalk',
-					JSON.stringify({ token: res.data.token, isPatient: res.data.patient })
-				);
+				localStorage.setItem('doctalk', res.data.token);
 				if (res.data.patient) {
-					window.location.href = '/patient';
+					navigate('/patient');
 				} else {
-					window.location.href = '/doctor';
+					navigate('/doctor');
 				}
 				toast.success('Logged in successfully', {
 					position: 'top-center',

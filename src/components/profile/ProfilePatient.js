@@ -24,9 +24,7 @@ export default function ProfilePatient() {
 								src='https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg'
 								alt=''
 							/>
-							<span className='font-weight-bold'>
-								{patient.user.firstName + patient.user.lastName}
-							</span>
+							<span className='font-weight-bold'>{patient.user.name}</span>
 							<span className='text-black-50'>{patient.user.email}</span>
 							<span> </span>
 						</div>
@@ -43,7 +41,7 @@ export default function ProfilePatient() {
 										type='text'
 										className='form-control'
 										name='name_field'
-										value={patient.user.firstName + patient.user.lastName}
+										value={patient.user.name}
 										onChange={e => setUser({ ...user, name: e.target.value })}
 									/>
 								</div>

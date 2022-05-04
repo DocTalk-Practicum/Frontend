@@ -32,7 +32,7 @@ export default function ProfileDoctor() {
 								}
 								alt=''
 							/>
-							<span className='font-weight-bold'>{user.firstName}</span>
+							<span className='font-weight-bold'>{user.name}</span>
 							<span className='text-black-50'>{user.email}</span>
 							<span> </span>
 						</div>

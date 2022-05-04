@@ -1,144 +1,138 @@
+/* eslint-disable react/jsx-no-target-blank */
 import React from 'react';
-import './modal.css'
+import './modal.css';
+import { useProfile } from '../../context/Profile.context';
 
 export default function AppointmentModal({ appointment }) {
-	return (
-		<>
-			<div
-				className='modal fade'
-				id='AppointmentModal'
-				tabIndex='-1'
-				aria-labelledby='AppointmentModalLabel'
-				aria-hidden='true'>
-				<div className='modal-dialog modal-lg'>
-					<div className='modal-content'>
-						<div className='modal-header'>
-							<h5 className='modal-title' id='AppointmentModalLabel'>
-								Doctors Details
-							</h5>{' '}
-							<button
-								type='button'
-								className='close btn-close'
-								data-bs-dismiss='modal'
-								aria-label='Close'>
-								{' '}
-								<span aria-hidden='true'>
-									<i className='fa fa-close'></i>
-								</span>{' '}
-							</button>
-						</div>
-						<div className='modal-body'>
-							<div className='row g-0' id='main_modal_part'>
-								<div className='col-md-12'>
-									<div className='status p-3'>
-										<table
-											className='table table-borderless'
-											style={{ tableLayout: 'fixed' }}>
-											<tbody>
-												<tr>
-													<td id='td_info_appointment_id'>
-														<div className='d-flex flex-column'>
-															{' '}
-															<span className='heading d-block'>
-																Appointment ID
-															</span>{' '}
-															<span
-																className='subheadings'
-																id='info_appointment_id'>
-																fasdfasdfasdf
-															</span>{' '}
-														</div>
-													</td>
-													<td id='td_info_suggesting_doc' hidden>
-														<div className='d-flex flex-column'>
-															{' '}
-															<span className='heading d-block'>
-																Suggesting Doctor
-															</span>{' '}
-															<span
-																className='subheadings'
-																id='info_suggesting_doc'>
-																fasdfasdfasdf
-															</span>{' '}
-														</div>
-													</td>
-													<td>
-														<div className='d-flex flex-column'>
-															{' '}
-															<span className='heading d-block'>Date</span>{' '}
-															<span
-																className='subheadings'
-																id='info_appointment_date'>
-																2022-12-12
-															</span>{' '}
-														</div>
-													</td>
-													<td>
-														<div className='d-flex flex-column'>
-															{' '}
-															<span className='heading d-block'>Time</span>{' '}
-															<span
-																className='subheadings'
-																id='info_appointment_time'>
-																00:00
-															</span>{' '}
-														</div>
-													</td>
-												</tr>
-												<tr></tr>
-												<tr>
-													<td>
-														<div className='d-flex flex-column'>
-															{' '}
-															<span className='heading d-block'>
-																Reason For Visit
-															</span>{' '}
-															<span
-																className='subheadings'
-																id='info_visiting_reason'>
-																dfasdfasddfasdfasdfasdfasdfasdfadsfasdfnsdfhjasdh
-																f jasdfhjaskdfakjhihjkhhihjjsdlfjl
-															</span>{' '}
-														</div>
-													</td>
-												</tr>
-												<tr id='tr_info_side_note' hidden>
-													<td>
-														<div className='d-flex flex-column'>
-															{' '}
-															<span className='heading d-block'>
-																Side Note
-															</span>{' '}
-															<span className='subheadings' id='info_side_note'>
-																dfasdfasddfasdfasdfasdfasdfasdfadsfasdfnsdfhjasdh
-																f jasdfhjaskdfakjhihjkhhihjjsdlfjl
-															</span>{' '}
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<div id='extra_documents_space'>
-															<span className='heading d-block'>
-																Extra Documents
-															</span>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<div id='tr_documents_space'>
-															<span className='heading d-block'>Test Reports</span>
-														</div>
-													</td>
-												</tr>
+	// console.log(appointment);
+	// const { profile } = useProfile();
+	// console.log(profile);
+	return appointment !== null ? (
+		<div
+			className='modal fade'
+			id='AppointmentModal'
+			tabIndex='-1'
+			aria-labelledby='AppointmentModalLabel'
+			aria-hidden='true'>
+			<div className='modal-dialog modal-xl modal-fullscreen-lg-down'>
+				<div className='modal-content'>
+					<div className='modal-header'>
+						<h5 className='modal-title' id='AppointmentModalLabel'>
+							Doctors Details
+						</h5>{' '}
+						<button
+							type='button'
+							className='close btn-close'
+							data-bs-dismiss='modal'
+							aria-label='Close'>
+							{' '}
+							<span aria-hidden='true'>
+								<i className='fa fa-close'></i>
+							</span>{' '}
+						</button>
+					</div>
+					<div className='modal-body'>
+						<div className='row g-0' id='main_modal_part'>
+							<div className='col-md-12'>
+								<div className='status p-3'>
+									<table
+										className='table table-borderless'
+										style={{ tableLayout: 'fixed' }}>
+										<tbody>
+											<tr>
+												<td id='td_info_appointment_id'>
+													<div className='d-flex flex-column'>
+														{' '}
+														<span className='heading d-block'>
+															Appointment ID
+														</span>{' '}
+														<span
+															className='subheadings'
+															id='info_appointment_id'>
+															{appointment?._id}
+														</span>{' '}
+													</div>
+												</td>
+												<td>
+													<div className='d-flex flex-column'>
+														{' '}
+														<span className='heading d-block'>Date</span>{' '}
+														<span
+															className='subheadings'
+															id='info_appointment_date'>
+															{appointment?.date}
+														</span>{' '}
+													</div>
+												</td>
+												<td>
+													<div className='d-flex flex-column'>
+														{' '}
+														<span className='heading d-block'>Time</span>{' '}
+														<span
+															className='subheadings'
+															id='info_appointment_time'>
+															{appointment?.time}
+														</span>{' '}
+													</div>
+												</td>
+											</tr>
+											<tr></tr>
+											<tr>
+												<td>
+													<div className='d-flex flex-column'>
+														{' '}
+														<span className='heading d-block'>
+															Reason For Visit
+														</span>{' '}
+														<span
+															className='subheadings'
+															id='info_visiting_reason'>
+															{appointment?.reasonForVisit}
+														</span>{' '}
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<div id='extra_documents_space'>
+														<span className='heading d-block'>
+															Extra Documents
+														</span>
+														{appointment?.medicalFiles?.map(file => (
+															<a
+																href={`http://localhost:8000${file}`}
+																target='_blank'>
+																<img
+																	src={`http://localhost:8000${file}`}
+																	alt=''
+																/>
+															</a>
+														))}
+													</div>
+												</td>
+											</tr>
+											{appointment?.prescription?.length > 0 && (
 												<tr>
 													<td>
 														<div id='presc_documents_space'>
-															<span className='heading d-block'>Prescriptions</span>
+															<span className='heading d-block'>
+																Prescriptions
+															</span>
+															{appointment?.prescription?.map(file => (
+																<a
+																	href={`http://localhost:8000${file}`}
+																	target='_blank'>
+																	<img
+																		src={`http://localhost:8000${file}`}
+																		alt=''
+																	/>
+																</a>
+															))}
 														</div>
 													</td>
 												</tr>
+											)}
+											{
 												<tr>
 													<form encType='multipart/form-data'>
 														<input
@@ -191,15 +185,17 @@ export default function AppointmentModal({ appointment }) {
 														</td>
 													</form>
 												</tr>
-											</tbody>
-										</table>
-									</div>
+											}
+										</tbody>
+									</table>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</>
+		</div>
+	) : (
+		<></>
 	);
 }
