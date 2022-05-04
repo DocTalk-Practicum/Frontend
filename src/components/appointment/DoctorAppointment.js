@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 import AppointmentModal from '../../components/modal/AppointmentModal';
 import imgSrc from '../../assets/images/user.png';
 import { Link } from 'react-router-dom';
@@ -13,7 +14,8 @@ export default function DoctorAppointment() {
 	useEffect(() => {
 		async function fetchAppt() {
 			const token = localStorage.getItem('doctalk');
-			console.log(token);
+			// console.log(token);
+			const { id } = jwt_decode(token);
 			const res = await axios.get('/doctor/getAppointments', {
 				headers: {
 					Authorization: `Bearer ${token}`
@@ -21,7 +23,14 @@ export default function DoctorAppointment() {
 			});
 			// console.log(res.data.appointments);
 			if (res.status === 200 && res.data.appointments) {
-				setAppointments(res.data.appointments);
+				let appts = res.data.appointments.filter(
+					appt => appt.DoctorId._id === id
+				);
+				console.log(id, appts);
+				console.log(res.data.appointments);
+
+				setAppointments(appts);
+				// setAppointments(res.data.appointments);
 			}
 		}
 		fetchAppt();

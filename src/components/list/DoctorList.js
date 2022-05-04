@@ -67,7 +67,7 @@ export default function DoctorList() {
 									</div>
 									<div className='mt-4 apointment'>
 										{' '}
-										<Link to={`/patient/bookappointment/${doctor.id}`}>
+										<Link to={`/patient/bookappointment/${doctor._id}`}>
 											<button
 												className='btn btn'
 												style={{ backgroundColor: '#C1DEAE' }}>

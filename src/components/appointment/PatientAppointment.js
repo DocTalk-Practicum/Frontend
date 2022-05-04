@@ -1,25 +1,31 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 import imgSrc from '../../assets/images/user.png';
 import DoctorModal from '../../components/modal/DoctorModal';
 
 export default function PatientAppointment() {
-	const [appointments, setAppointments] = useState([
-	]);
+	const [appointments, setAppointments] = useState([]);
 
 	useEffect(() => {
 		async function fetchAppt() {
 			const token = localStorage.getItem('doctalk');
-			console.log(token);
+			// console.log(token);
+			const { id } = jwt_decode(token);
+			// console.log(id);
 			const res = await axios.get('/doctor/getAppointments', {
 				headers: {
 					Authorization: `Bearer ${token}`
 				}
 			});
-			console.log(res.data.appointments);
+			// console.log(res.data.appointments);
 			if (res.status === 200 && res.data.appointments) {
-				setAppointments(res.data.appointments);
+				let appts = res.data.appointments.filter(
+					appt => appt.patientId._id === id
+				);
+				// console.log(id, appts);
+				setAppointments(appts);
 			}
 		}
 
@@ -49,63 +55,56 @@ export default function PatientAppointment() {
 									</tr>
 								</thead>
 								<tbody>
-									{appointments.map(
-										(appointment, index) => (
-											console.log(appointment),
-											(
-												<tr key={index}>
-													<td className='px-6 py-4'>
-														<div className='flex items-center space-x-3'>
-															<div className='inline-flex w-10 h-10'>
-																{' '}
-																<img
-																	className='w-10 h-10 object-cover rounded-full'
-																	alt='User avatar'
-																	src={imgSrc}
-																/>{' '}
-															</div>
-															<div>
-																<p> {appointment.DoctorId.name} </p>
-																<p className='text-gray-500 text-sm font-semibold tracking-wide'>
-																	{' '}
-																	{appointment.DoctorId.email}
-																</p>
-															</div>
-														</div>
-													</td>
-													<td className='px-6 py-4'>
-														<p className=''> {appointment.date} </p>
-													</td>
-													<td className='px-6 py-4'>
-														<p className=''> {appointment.time} </p>
-													</td>
-													<td className='px-6 py-4 text-center'>
+									{appointments.map((appointment, index) => (
+										<tr key={index}>
+											<td className='px-6 py-4'>
+												<div className='flex items-center space-x-3'>
+													<div className='inline-flex w-10 h-10'>
 														{' '}
-														<a
-															data-bs-toggle='modal'
-															data-bs-target='#exampleModal'
-															style={{ color: '#219F94' }}
-															href=''
-															onClick={() =>
-																setModalDoctor(appointment.DoctorId)
-															}>
-															View
-														</a>
-													</td>
-													<td className='px-6 py-4 text-center'>
-														{' '}
-														<a
-															className='text-current'
-															target='_blank'
-															href='/room/{{appointment.room_id}}'
-															style={{ color: '#219F94' }}>
-															Join
-														</a>
-													</td>
-												</tr>
-											)
-										)
-									)}
+														<img
+															className='w-10 h-10 object-cover rounded-full'
+															alt='User avatar'
+															src={imgSrc}
+														/>{' '}
+													</div>
+													<div>
+														<p> {appointment.DoctorId.name} </p>
+														<p className='text-gray-500 text-sm font-semibold tracking-wide'>
+															{' '}
+															{appointment.DoctorId.email}
+														</p>
+													</div>
+												</div>
+											</td>
+											<td className='px-6 py-4'>
+												<p className=''> {appointment.date} </p>
+											</td>
+											<td className='px-6 py-4'>
+												<p className=''> {appointment.time} </p>
+											</td>
+											<td className='px-6 py-4 text-center'>
+												{' '}
+												<a
+													data-bs-toggle='modal'
+													data-bs-target='#exampleModal'
+													style={{ color: '#219F94' }}
+													href=''
+													onClick={() => setModalDoctor(appointment.DoctorId)}>
+													View
+												</a>
+											</td>
+											<td className='px-6 py-4 text-center'>
+												{' '}
+												<a
+													className='text-current'
+													target='_blank'
+													href='/room/{{appointment.room_id}}'
+													style={{ color: '#219F94' }}>
+													Join
+												</a>
+											</td>
+										</tr>
+									))}
 								</tbody>
 							</table>
 						</div>

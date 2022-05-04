@@ -1,21 +1,73 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 import './bookAppt.css';
 import { useParams } from 'react-router-dom';
 
 export default function BookAppointment() {
+	const navigate = useNavigate();
 	const { id } = useParams();
-  const {formData, setFormData} = useState({
-    
-  })
+	const [formData, setFormData] = useState({
+		DoctorId: id,
+		date: '',
+		time: '',
+		reasonForVisit: ''
+	});
+
+	async function handleSubmit(e) {
+		const token = localStorage.getItem('doctalk');
+		e.preventDefault();
+
+		try {
+			const res = await axios.post('/patient/uploadReport', formData, {
+				headers: {
+					Authorization: `Bearer ${token}`
+				}
+			});
+
+			console.log(res);
+
+			if (res.status === 200) {
+				localStorage.setItem('doctalk', res.data.token);
+				navigate('/patient');
+				toast.success('Appointment booked successfully', {
+					position: 'top-center',
+					autoClose: 3000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined
+				});
+			}
+		} catch (error) {
+			console.log(error.message);
+			toast.error('Appointment booking failed', {
+				position: 'top-center',
+				autoClose: 1000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined
+			});
+		}
+	}
+
 	return (
-		<div>
+		<>
+			<ToastContainer />
 			<div className='contact_form'>
 				<div className='container'>
 					<div className='row'>
 						<div className='col-lg-10 offset-lg-1'>
 							<div className='contact_form_container'>
 								<div className='contact_form_title'>Book Appointment</div>
-								<form id='appointment_form' enctype='multipart/form-data'>
+								<form
+									id='appointment_form'
+									enctype='multipart/form-data'
+									onSubmit={handleSubmit}>
 									<div className='contact_form_inputs d-flex flex-md-row flex-column justify-content-between align-items-between'>
 										<input
 											type='date'
@@ -25,6 +77,9 @@ export default function BookAppointment() {
 											placeholder='Date'
 											required='required'
 											data-error='Date is required.'
+											onChange={e =>
+												setFormData({ ...formData, date: e.target.value })
+											}
 										/>
 										<input
 											type='time'
@@ -34,6 +89,9 @@ export default function BookAppointment() {
 											placeholder='Time'
 											required='required'
 											data-error='Time is required.'
+											onChange={e =>
+												setFormData({ ...formData, time: e.target.value })
+											}
 										/>
 										<input
 											type='text'
@@ -53,7 +111,13 @@ export default function BookAppointment() {
 											rows='4'
 											placeholder='Describe your reason for visit'
 											required='required'
-											data-error='Please, write the reason'></textarea>{' '}
+											data-error='Please, write the reason'
+											onChange={e =>
+												setFormData({
+													...formData,
+													reasonForVisit: e.target.value
+												})
+											}></textarea>{' '}
 									</div>
 									<div style={{ paddingTop: '20px' }}>
 										<div className='card mb-30'>
@@ -85,6 +149,6 @@ export default function BookAppointment() {
 				</div>
 				<div className='panel'></div>
 			</div>
-		</div>
+		</>
 	);
 }
