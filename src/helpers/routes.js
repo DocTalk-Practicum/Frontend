@@ -13,26 +13,36 @@ export const AdminRoute = ({ ...routeProps }) => {
 	return <Route {...routeProps} />;
 };
 
+export const DoctorRoute = ({ ...routeProps }) => {
+	const { user } = useUser();
+	console.log(useUser());
+
+	if (user && user.role === 'Doctor') {
+		return <Navigate to='/doctor' />;
+	} else {
+		<Navigate to='/patient' />;
+	}
+};
+
 export const PrivateRoute = ({ ...routeProps }) => {
-	const { profile, isLoading } = useProfile();
+	const { profile } = useProfile();
 	console.log(profile);
 
-	if (isLoading && !profile) {
-		return <div>Loading...</div>;
+	if (profile && !profile.isPatient) {
+		return <Navigate to='/doctor' />;
+	} else if (profile && profile.isPatient) {
+		return <Navigate to='/patient' />;
 	}
-
-	if (!profile && !isLoading) {
-		return <Navigate to='/' />;
-	}
-	return <Route {...routeProps} />;
+	return <Navigate to='/' />;
 };
 
 export const PublicRoute = ({ children }) => {
-	const { profile, isLoading } = useProfile();
-	
-	if (profile && !isLoading && !profile.isPatient) {
+	const { profile } = useProfile();
+	console.log(profile);
+
+	if (profile && !profile.isPatient) {
 		return <Navigate to='/doctor' />;
-	} else if (profile && !isLoading && profile.isPatient) {
+	} else if (profile && profile.isPatient) {
 		return <Navigate to='/patient' />;
 	}
 	return <div>{children}</div>;

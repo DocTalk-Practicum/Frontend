@@ -16,6 +16,7 @@ export const UserProvider = ({ children }) => {
 
 	const loadUser = useCallback(async () => {
 		const token = localStorage.getItem('doctalk');
+    console.log(token);
 
 		if (token) {
 			await axios

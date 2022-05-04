@@ -8,11 +8,11 @@ const ProfileContext = createContext();
 export const ProfileProvider = ({ children }) => {
 	const navigate = useNavigate();
 	const [profile, setProfile] = useState(null);
-	const [isLoading, setIsLoading] = useState(true);
 
 	const token = localStorage.getItem('doctalk');
+  console.log(token);
 
-	useEffect(() => {
+	function fetchProfile() {
 		if (token) {
 			const decodedJwt = jwt_decode(token);
 			// console.log(decodedJwt);
@@ -23,22 +23,25 @@ export const ProfileProvider = ({ children }) => {
 			} else {
 				// console.log(false);
 				const userData = {
-					userId: decodedJwt.id
+					userId: decodedJwt.id,
+					isPatient: decodedJwt.isPatient
 				};
 
 				setProfile(userData);
 			}
-			setIsLoading(false);
 		} else {
 			setProfile(null);
-			setIsLoading(false);
 		}
+	}
+
+	useEffect(() => {
+		fetchProfile();
 	}, [token]);
 
 	console.log(profile);
 
 	return (
-		<ProfileContext.Provider value={{ isLoading, profile, setProfile }}>
+		<ProfileContext.Provider value={{ profile, setProfile }}>
 			{children}
 		</ProfileContext.Provider>
 	);
