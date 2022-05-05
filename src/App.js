@@ -29,18 +29,18 @@ function App() {
 							exact
 							path='/doctor/*'
 							element={
-								<PrivateRoute>
+								// <PrivateRoute>
+								// </PrivateRoute>
 									<Doctor />
-								</PrivateRoute>
 							}
 						/>
 						<Route
 							exact
 							path='/patient/*'
 							element={
-								<PrivateRoute>
+								// <PrivateRoute>
+								// </PrivateRoute>
 									<Patient />
-								</PrivateRoute>
 							}
 						/>
 

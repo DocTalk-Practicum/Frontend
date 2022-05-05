@@ -2,9 +2,14 @@ import React from 'react';
 import './navbar.css';
 import logo from '../../assets/images/logo.png';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function NavbarPatient() {
-	const handleLogout = () => {};
+	const navigate = useNavigate();
+	const handleLogout = () => {
+		localStorage.removeItem("doctalk");
+		navigate("/");
+	  };
 	return (
 		<div>
 			<div className='navbar' style={{ backgroundColor: '#219F94' }}>

@@ -14,16 +14,14 @@ export default function PatientAppointment() {
 			// console.log(token);
 			const { id } = jwt_decode(token);
 			// console.log(id);
-			const res = await axios.get('/doctor/getAppointments', {
+			const res = await axios.get('/patient/getAllReports', {
 				headers: {
 					Authorization: `Bearer ${token}`
 				}
 			});
-			// console.log(res.data.appointments);
-			if (res.status === 200 && res.data.appointments) {
-				let appts = res.data.appointments.filter(
-					appt => appt.patientId._id === id
-				);
+			console.log(res.data.data);
+			if (res.status === 200 && res.data.data) {
+				let appts = res.data.data
 				// console.log(id, appts);
 				setAppointments(appts);
 			}

@@ -22,10 +22,8 @@ export default function DoctorAppointment() {
 				}
 			});
 			// console.log(res.data.appointments);
-			if (res.status === 200 && res.data.appointments) {
-				let appts = res.data.appointments.filter(
-					appt => appt.DoctorId._id === id
-				);
+			if (res.status === 200 && res.data.data) {
+				let appts = res.data.data;
 				console.log(id, appts);
 				console.log(res.data.appointments);
 
