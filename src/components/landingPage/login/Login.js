@@ -45,8 +45,8 @@ export default function Login() {
 				// });
 			}
 		} catch (err) {
-			console.log(err);
-			toast.error('Invalid Credentials', {
+			console.log("ujjwal ",err);
+			toast.error(err.response.data.message, {
 				position: 'top-center',
 				autoClose: 1000,
 				hideProgressBar: false,

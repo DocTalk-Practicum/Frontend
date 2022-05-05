@@ -23,17 +23,12 @@ export default function DoctorAppointment() {
 			});
 			// console.log(res.data.appointments);
 			if (res.status === 200 && res.data.appointments) {
-				let appts = res.data.data;
-				console.log(id, appts);
-				console.log(res.data.appointments);
-
-				setAppointments(appts);
-				// setAppointments(res.data.appointments);
+				setAppointments(res.data.appointments);
 			}
 		}
 		fetchAppt();
 	}, []);
-
+console.log("ujjwal",appointments)
 	return (
 		<>
 			{modalAppointment !== {} && (
@@ -61,8 +56,8 @@ export default function DoctorAppointment() {
 									</tr>
 								</thead>
 								<tbody>
-									{appointments.length > 0 ? (
-										appointments.map((appointment, index) => (
+									{appointments?.length > 0 ? (
+										appointments?.map((appointment, index) => (
 											<tr key={index}>
 												<td data-label='Job Title'>
 													{' '}

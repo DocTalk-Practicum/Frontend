@@ -6,6 +6,8 @@ import PatientAppointment from '../components/appointment/PatientAppointment';
 import ProfilePatient from '../components/profile/ProfilePatient';
 import DoctorList from '../components/list/DoctorList';
 import BookAppointment from '../components/bookAppointment/BookAppointment';
+import UploadDocs from '../components/upload/Upload';
+import ViewDocs from '../components/views/Views';
 import { UserProvider } from '../context/User.context';
 
 export default function Patient() {
@@ -18,6 +20,8 @@ export default function Patient() {
 				<Route path='/profile' element={<ProfilePatient />} />
 				<Route path='/doctorlist' element={<DoctorList />} />
 				<Route path='/bookAppointment/:id' element={<BookAppointment />} />
+				<Route path='/uploadDocs' element={<UploadDocs />} />
+				<Route path='/viewDocs' element={<ViewDocs />} />
 			</Routes>
 		</UserProvider>
 	);

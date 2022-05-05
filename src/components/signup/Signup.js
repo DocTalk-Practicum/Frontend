@@ -4,8 +4,10 @@ import './signup.css';
 import { Link } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import imageSrc from '../../assets/images/patient-login.png';
+import { useNavigate } from 'react-router-dom';
 
 export default function Signup() {
+	const navigate=useNavigate()
 	const [isDoctor, setIsDoctor] = useState(false);
 	const [files, setFiles] = useState([]);
 	const [patientLogin, setPatientLogin] = useState({
@@ -22,28 +24,35 @@ export default function Signup() {
 		clinicName: '',
 		clinicAddress: '',
 		clinicMap: '',
-		description: ''
+		description: '',
+		profileFile:{},
+		validationFile:{}
 	});
 
 	const handleSignup = async e => {
 		e.preventDefault();
 		try {
 			if (isDoctor) {
-				let formData = new FormData();
-				for (let i = 0; i < files.length; i++) {
-					formData.append(`files[${i}]`, files[i]);
-				}
-				console.log({ ...patientLogin, ...doctorLogin, ...formData });
-				const res = await axios.post('/auth/doctorRegister', {
-					...patientLogin,
-					...doctorLogin
-				});
+				let fd = new FormData();
+				console.log("ujjwal",doctorLogin)
+
+				Object.keys(patientLogin).map((item)=>
+					fd.append(item,patientLogin[item])
+				)
+				Object.keys(doctorLogin).map((item)=>
+					fd.append(item,doctorLogin[item])
+				)
+				fd.append("files",doctorLogin.profileFile[0])
+				fd.append("files",doctorLogin.validationFile[0])
+			
+				const res = await axios.post('/auth/doctorRegister', fd);
 				if (res.status === 200) {
-					localStorage.setItem('doctalk', res.data.token);
-					window.location.href('/doctor');
+					// localStorage.setItem('doctalk', res.data.token);
+					// window.location.href='/';
+					navigate("/")
 					toast.success('Registered successfully', {
 						position: 'top-center',
-						autoClose: 3000,
+						autoClose: 500,
 						hideProgressBar: false,
 						closeOnClick: true,
 						pauseOnHover: true,
@@ -56,11 +65,12 @@ export default function Signup() {
 					...patientLogin
 				});
 				if (res.status === 200) {
-					localStorage.setItem('doctalk', res.data.token);
-					window.location.href('/patient');
+					// localStorage.setItem('doctalk', res.data.token);
+					// window.location.href='/';
+					navigate("/")
 					toast.success('Registered successfully', {
 						position: 'top-center',
-						autoClose: 3000,
+						autoClose: 500,
 						hideProgressBar: false,
 						closeOnClick: true,
 						pauseOnHover: true,
@@ -178,7 +188,10 @@ export default function Signup() {
 									name='profile_pic'
 									id='profile_picin'
 									placeholder='Profile Picture'
-									onChange={e => setFiles(e.target.files[0])}
+									onChange={e => setDoctorLogin({
+										...doctorLogin,
+										profileFile:e.target.files
+									}) }
 								/>
 							</span>
 							<textarea
@@ -200,7 +213,10 @@ export default function Signup() {
 									name='validproof'
 									id='validproofin'
 									placeholder='Proof for validation'
-									onChange={e => setFiles(e.target.files[0])}
+									onChange={e => setDoctorLogin({
+										...doctorLogin,
+										validationFile:e.target.files
+									}) }
 								/>
 							</span>
 							<input

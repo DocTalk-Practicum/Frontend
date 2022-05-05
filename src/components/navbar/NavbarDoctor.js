@@ -6,8 +6,8 @@ import { Link,useNavigate} from 'react-router-dom';
 export default function NavbarDoctor() {
 	const navigate = useNavigate();
 	const handleLogout = () => {
+		navigate(``,{ replace: true });
 		localStorage.removeItem("doctalk");
-		navigate("/");
 	  };
 	return (
 		<div>

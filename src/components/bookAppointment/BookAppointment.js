@@ -12,15 +12,26 @@ export default function BookAppointment() {
 		DoctorId: id,
 		date: '',
 		time: '',
-		reasonForVisit: ''
+		reasonForVisit: '',
+		files:[]
+
 	});
 
 	async function handleSubmit(e) {
 		const token = localStorage.getItem('doctalk');
-		e.preventDefault();
+		e.preventDefault()
+		console.log("ujjwal",formData.files.length)
+		const fd = new FormData();
+		for(let i=0;i<formData.files.length;i++){			
+			fd.append("files", formData.files[i])
+		}
+		fd.append("DoctorId",formData.DoctorId );
+		fd.append("date",formData.date );
+		fd.append("time",formData.time );
+		fd.append("reasonForVisit",formData.reasonForVisit );
 
 		try {
-			const res = await axios.post('/patient/uploadReport', formData, {
+			const res = await axios.post('/patient/uploadReport', fd, {
 				headers: {
 					Authorization: `Bearer ${token}`
 				}
@@ -29,7 +40,7 @@ export default function BookAppointment() {
 			console.log(res);
 
 			if (res.status === 200) {
-				localStorage.setItem('doctalk', res.data.token);
+				// localStorage.setItem('doctalk', res.data.token);
 				navigate('/patient');
 				toast.success('Appointment booked successfully', {
 					position: 'top-center',
@@ -130,6 +141,7 @@ export default function BookAppointment() {
 													name='extra_documents'
 													id='extra_documents'
 													multiple
+													onChange={(e)=>setFormData({...formData,files:[...e.target.files]})}
 												/>
 											</div>
 										</div>
