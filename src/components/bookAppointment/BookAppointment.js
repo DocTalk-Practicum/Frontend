@@ -14,7 +14,6 @@ export default function BookAppointment() {
 		time: '',
 		reasonForVisit: '',
 		files:[]
-
 	});
 
 	async function handleSubmit(e) {

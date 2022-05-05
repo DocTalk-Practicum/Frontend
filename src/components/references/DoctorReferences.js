@@ -1,32 +1,36 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import AppointmentModal from '../../components/modal/AppointmentModal';
+import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import imgSrc from '../../assets/images/user.png';
+import AppointmentModal from '../modal/AppointmentModal';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-export default function DoctorAppointment() {
+export default function DoctorReferences() {
 	const [appointments, setAppointments] = useState([]);
-
-	const [modalAppointment, setModalAppointment] = useState({});
+	const [modalAppointment, setModalAppointment] = useState([]);
 
 	useEffect(() => {
-		async function fetchAppt() {
-			const token = localStorage.getItem('doctalk');
-			// console.log(token);
-			const res = await axios.get('/doctor/getAppointments', {
-				headers: {
-					Authorization: `Bearer ${token}`
-				}
-			});
-			// console.log(res.data.appointments);
-			if (res.status === 200 && res.data.appointments) {
+		async function fetchData() {
+			try {
+				const res = await axios.get('/doctor/getReferedAppointments');
+				// console.log(res.data);
 				setAppointments(res.data.appointments);
+			} catch (err) {
+				toast.error('There was a problem', {
+					position: 'top-center',
+					autoClose: 1000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined
+				});
 			}
 		}
-		fetchAppt();
+		fetchData();
 	}, []);
-	console.log('ujjwal', appointments);
+
 	return (
 		<>
 			{modalAppointment !== {} && (
@@ -36,7 +40,7 @@ export default function DoctorAppointment() {
 				<div className='container'>
 					<div className='card'>
 						<div className='card-header'>
-							<h6>Appointments</h6>
+							<h6>Refered Patients</h6>
 						</div>
 						<div className='table-responsive'>
 							<table className='table table-hover table-nowrap'>
@@ -135,7 +139,7 @@ export default function DoctorAppointment() {
 											</tr>
 										))
 									) : (
-										<div className='p-5'>No appointments</div>
+										<div className='p-5'>No Referred Patients</div>
 									)}
 								</tbody>
 							</table>

@@ -32,7 +32,6 @@ export default function NavbarPatient() {
 				<div className='nav-links'>
 					<Link to='/patient/doctorlist'>Doctors</Link>
 					<Link to='/patient'>Appointment History</Link>
-					<Link to='/patient/references'>References</Link>
 					<Link to='/patient/uploadDocs'>Upload Docs</Link>
 					<Link to='/patient/viewDocs'>View Docs</Link>
 					<Link to='/patient/profile'>Profile</Link>

@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import jwt_decode from 'jwt-decode';
 import imgSrc from '../../assets/images/user.png';
 import DoctorModal from '../../components/modal/DoctorModal';
 
@@ -12,8 +11,6 @@ export default function PatientAppointment() {
 		async function fetchAppt() {
 			const token = localStorage.getItem('doctalk');
 			// console.log(token);
-			const { id } = jwt_decode(token);
-			// console.log(id);
 			const res = await axios.get('/patient/getAllReports', {
 				headers: {
 					Authorization: `Bearer ${token}`
@@ -21,7 +18,7 @@ export default function PatientAppointment() {
 			});
 			console.log(res.data.data);
 			if (res.status === 200 && res.data.data) {
-				let appts = res.data.data
+				let appts = res.data.data;
 				// console.log(id, appts);
 				setAppointments(appts);
 			}
@@ -49,7 +46,7 @@ export default function PatientAppointment() {
 										<th scope='col'>Time</th>
 										<th scope='col'>Details</th>
 										<th scope='col'>Meeting Link</th>
-										<th></th>
+										<th scope='col'>Referred To</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -100,6 +97,9 @@ export default function PatientAppointment() {
 													style={{ color: '#219F94' }}>
 													Join
 												</a>
+											</td>
+											<td className='px-6 py-4'>
+												<p className=''>{appointment.referedDoctor?.name} </p>
 											</td>
 										</tr>
 									))}

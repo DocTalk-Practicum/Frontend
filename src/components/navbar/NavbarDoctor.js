@@ -1,14 +1,15 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import './navbar.css';
 import logo from '../../assets/images/logo.png';
-import { Link,useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function NavbarDoctor() {
 	const navigate = useNavigate();
 	const handleLogout = () => {
-		navigate(``,{ replace: true });
-		localStorage.removeItem("doctalk");
-	  };
+		navigate(`/`, { replace: true });
+		localStorage.removeItem('doctalk');
+	};
 	return (
 		<div>
 			<div className='navbar' style={{ backgroundColor: '#219F94' }}>
@@ -30,12 +31,11 @@ export default function NavbarDoctor() {
 
 				<div className='nav-links'>
 					<Link to='/doctor'>Today's Schedule</Link>
-					<Link to='/doctor/patientlist'>Patients</Link>
 					<Link to='/doctor/references'>References</Link>
 					<Link to='/doctor/profile'>Profile</Link>
-					<Link to='/' onClick={handleLogout}>
+					<a style={{color: 'white'}} onClick={handleLogout}>
 						Logout
-					</Link>
+					</a>
 				</div>
 			</div>
 		</div>

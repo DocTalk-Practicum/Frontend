@@ -4,8 +4,9 @@ import { ToastContainer } from 'react-toastify';
 import NavbarDoctor from '../components/navbar/NavbarDoctor';
 import DoctorAppointment from '../components/appointment/DoctorAppointment';
 import ProfileDoctor from '../components/profile/ProfileDoctor';
-import PatientList from '../components/list/PatientList';
 import { UserProvider } from '../context/User.context';
+import ReferDoctor from '../components/referDoctor/Refer';
+import DoctorReferences from '../components/references/DoctorReferences';
 
 export default function Doctor() {
 	return (
@@ -15,7 +16,8 @@ export default function Doctor() {
 			<Routes>
 				<Route path='/' element={<DoctorAppointment />} />
 				<Route path='/profile' element={<ProfileDoctor />} />
-				<Route path='/patientlist' element={<PatientList />} />
+				<Route path='/references' element={<DoctorReferences />} />
+				<Route path='/referdoctors/:id' element={<ReferDoctor />} />
 			</Routes>
 		</UserProvider>
 	);
