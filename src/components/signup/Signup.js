@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import imageSrc from '../../assets/images/patient-login.png';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../landingPage/Navbar';
 
 export default function Signup() {
 	const navigate=useNavigate()
@@ -96,6 +97,7 @@ export default function Signup() {
 	return (
 		<div>
 			<ToastContainer />
+      <Navbar />
 			<div className='containerSignup'>
 				<div className='info'>
 					<h1>SignUp</h1>

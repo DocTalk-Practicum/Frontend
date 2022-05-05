@@ -7,9 +7,9 @@ import { useNavigate } from 'react-router-dom';
 export default function NavbarPatient() {
 	const navigate = useNavigate();
 	const handleLogout = () => {
-		localStorage.removeItem("doctalk");
-		navigate("/");
-	  };
+		navigate(`/`, { replace: true });
+		localStorage.removeItem('doctalk');
+	};
 	return (
 		<div>
 			<div className='navbar' style={{ backgroundColor: '#219F94' }}>
@@ -19,7 +19,8 @@ export default function NavbarPatient() {
 						<Link to='/'>
 							<img width='70px' src={logo} alt='' />
 						</Link>
-					</div>
+            <span style={{color:'white', marginLeft: '20px'}}>DocTalk</span>
+            </div>
 				</div>
 				<div className='nav-btn'>
 					<label htmlFor='nav-check'>

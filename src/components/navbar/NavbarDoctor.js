@@ -19,6 +19,7 @@ export default function NavbarDoctor() {
 						<Link to='/'>
 							<img width='70px' src={logo} alt='' />
 						</Link>
+            <span style={{color:'white', marginLeft: '20px'}}>DocTalk</span>
 					</div>
 				</div>
 				<div className='nav-btn'>
