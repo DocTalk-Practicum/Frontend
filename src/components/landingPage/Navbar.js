@@ -11,7 +11,7 @@ export default function Navbar() {
 				<div className='nav-header'>
 					<div className='nav-title'>
 						<Link to='/'>
-							<img width='70px' src={logo} alt='' />
+							<img style={{width:'60px'}} src={logo} alt='' />
 						</Link>
 						<span style={{color:'white', marginLeft: '20px'}}>DocTalk</span>
 					</div>
