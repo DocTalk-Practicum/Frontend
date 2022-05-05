@@ -55,7 +55,7 @@ export default function Signup() {
 						autoClose: 500,
 						hideProgressBar: false,
 						closeOnClick: true,
-						pauseOnHover: true,
+					pauseOnHover: true,
 						draggable: true,
 						progress: undefined
 					});
