@@ -17,8 +17,8 @@ export default function DoctorList() {
 					Authorization: `Bearer ${token}`
 				}
 			});
-			if (res.status === 200 && res.data.data) {
-				setDoctors(res.data.data);
+			if (res.status === 200 && res.data.doctors) {
+				setDoctors(res.data.doctors);
 			}
 		}
 		fetchAppt();
