@@ -20,8 +20,8 @@ export default function PatientAppointment() {
 				}
 			});
 			console.log(res.data.data);
-			if (res.status === 200 && res.data.appointments) {
-				let appts = res.data.appointments
+			if (res.status === 200 && res.data.data) {
+				let appts = res.data.data
 				// console.log(id, appts);
 				setAppointments(appts);
 			}
