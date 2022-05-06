@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import imgSrc from '../../assets/images/user.png';
-import DoctorModal from '../../components/modal/DoctorModal';
+import AppointmentModal from '../../components/modal/AppointmentModal';
+
 
 export default function PatientAppointment() {
 	const [appointments, setAppointments] = useState([]);
@@ -27,10 +28,12 @@ export default function PatientAppointment() {
 		fetchAppt();
 	}, []);
 
-	const [modalDoctor, setModalDoctor] = useState({});
+	const [modalAppointment, setModalAppointment] = useState({});
 	return (
 		<div>
-			<DoctorModal doctor={modalDoctor} />
+			{modalAppointment !== {} && (
+				<AppointmentModal appointment={modalAppointment} />
+			)}
 			<div className='p-10 bg-surface-secondary'>
 				<div className='container'>
 					<div className='card'>
@@ -77,17 +80,22 @@ export default function PatientAppointment() {
 											<td className='px-6 py-4'>
 												<p className=''> {appointment.time} </p>
 											</td>
-											<td className='px-6 py-4 text-center'>
-												{' '}
-												<a
-													data-bs-toggle='modal'
-													data-bs-target='#exampleModal'
-													style={{ color: '#219F94' }}
-													href=''
-													onClick={() => setModalDoctor(appointment.DoctorId)}>
-													View
-												</a>
-											</td>
+											<td data-label=''>
+													{' '}
+													<button
+														data-bs-toggle='modal'
+														data-bs-target='#AppointmentModal'
+														className='btn btn'
+														style={{
+															fontSize: '12px',
+															padding: '5px !important',
+															backgroundColor: 'transparent !important',
+															color: '#219F94'
+														}}
+														onClick={() => setModalAppointment(appointment)}>
+														View
+													</button>{' '}
+												</td>
 											<td className='px-6 py-4 text-center'>
 												{' '}
 												<a

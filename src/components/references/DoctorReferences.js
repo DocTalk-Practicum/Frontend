@@ -14,7 +14,7 @@ export default function DoctorReferences() {
 		async function fetchData() {
 			try {
 				const res = await axios.get('/doctor/getReferedAppointments');
-				// console.log(res.data);
+				console.log(res.data);
 				setAppointments(res.data.appointments);
 			} catch (err) {
 				toast.error('There was a problem', {

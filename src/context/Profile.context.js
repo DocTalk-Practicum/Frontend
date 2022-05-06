@@ -16,11 +16,11 @@ export const ProfileProvider = ({ children }) => {
 		if (token) {
 			const decodedJwt = jwt_decode(token);
 			// console.log(decodedJwt);
-			if (Date.now() >= decodedJwt.exp * 1000) {
-				// console.log(false);
-				localStorage.removeItem('doctalk');
-				navigate('/');
-			} else {
+			// if (Date.now() >= decodedJwt.exp * 1000) {
+			// 	// console.log(false);
+			// 	localStorage.removeItem('doctalk');
+			// 	navigate('/');
+			// } else {
 				// console.log(false);
 				const userData = {
 					userId: decodedJwt.id,
@@ -28,7 +28,7 @@ export const ProfileProvider = ({ children }) => {
 				};
 
 				setProfile(userData);
-			}
+			// }
 		} else {
 			setProfile(null);
 		}
