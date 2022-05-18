@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import imgSrc from '../../assets/images/user.png';
 import AppointmentModal from '../../components/modal/AppointmentModal';
+import { ToastContainer } from 'react-toastify';
 
 
 export default function PatientAppointment() {
@@ -31,6 +32,7 @@ export default function PatientAppointment() {
 	const [modalAppointment, setModalAppointment] = useState({});
 	return (
 		<div>
+      <ToastContainer />
 			{modalAppointment !== {} && (
 				<AppointmentModal appointment={modalAppointment} />
 			)}
@@ -101,7 +103,7 @@ export default function PatientAppointment() {
 												<a
 													className='text-current'
 													target='_blank'
-													href='/room/{{appointment.room_id}}'
+													href='http://localhost:8000/live'
 													style={{ color: '#219F94' }}>
 													Join
 												</a>

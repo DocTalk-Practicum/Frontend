@@ -4,6 +4,7 @@ import axios from 'axios';
 import AppointmentModal from '../../components/modal/AppointmentModal';
 import imgSrc from '../../assets/images/user.png';
 import { Link } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 export default function DoctorAppointment() {
 	const [appointments, setAppointments] = useState([]);
@@ -29,6 +30,7 @@ export default function DoctorAppointment() {
 	console.log('ujjwal', appointments);
 	return (
 		<>
+      <ToastContainer />
 			{modalAppointment !== {} && (
 				<AppointmentModal appointment={modalAppointment} />
 			)}
@@ -109,13 +111,13 @@ export default function DoctorAppointment() {
 												</td>
 												<td data-label=''>
 													{' '}
-													<Link
+													<a
 														className='text-current'
 														target='_blank'
-														to={`/room/${appointment.room_id}`}
+														href='http://localhost:8000/live'
 														style={{ color: '#219F94 !important' }}>
 														Join
-													</Link>{' '}
+													</a>{' '}
 												</td>
 												<td data-label=''>
 													{' '}

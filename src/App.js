@@ -9,8 +9,8 @@ import Signup from './components/signup/Signup';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 axios.defaults.baseURL = 'http://localhost:8000';
-axios.defaults.headers.common["Authorization"] =
-  "Bearer " + localStorage.getItem("doctalk");
+// axios.defaults.headers.common["Authorization"] =
+//   "Bearer " + localStorage.getItem("doctalk");
 
 function App() {
 	return (

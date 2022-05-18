@@ -31,7 +31,12 @@ const Views = () => {
   }, []);
 
   const getAllDocs = async () => {
-    const res = await axios.get("/documents/getAllDocs");
+    const token = localStorage.getItem('doctalk');
+    const res = await axios.get("/documents/getAllDocs", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
     console.log("ujjwal all", res.data);
     setAllDocuments(res.data.docs);
   };
