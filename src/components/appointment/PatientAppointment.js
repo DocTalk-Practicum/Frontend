@@ -103,7 +103,7 @@ export default function PatientAppointment() {
 												<a
 													className='text-current'
 													target='_blank'
-													href='http://localhost:8000/live'
+													href={appointment.meetLink}
 													style={{ color: '#219F94' }}>
 													Join
 												</a>

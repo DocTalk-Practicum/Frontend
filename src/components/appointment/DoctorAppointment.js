@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -114,7 +115,7 @@ export default function DoctorAppointment() {
 													<a
 														className='text-current'
 														target='_blank'
-														href='http://localhost:8000/live'
+														href={`http://localhost:8000/live/${appointment._id}`}
 														style={{ color: '#219F94 !important' }}>
 														Join
 													</a>{' '}

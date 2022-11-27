@@ -32,9 +32,15 @@ export default function ReferDoctor() {
 		try {
 			const docId = doctor._id;
 			const reportId = id;
+			console.log("Doctor",doctor)
+			const token = localStorage.getItem('doctalk');
 			const res = await axios.post('/doctor/referDoctor', {
 				docId,
 				reportId
+			},{
+				headers: {
+					Authorization: `Bearer ${token}`
+				}
 			});
 			if (res.status === 200) {
 				toast.success('Referred successfully', {

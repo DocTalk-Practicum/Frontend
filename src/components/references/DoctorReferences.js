@@ -113,13 +113,13 @@ export default function DoctorReferences() {
 												</td>
 												<td data-label=''>
 													{' '}
-													<Link
+													<a
 														className='text-current'
 														target='_blank'
-														to={`/room/${appointment.room_id}`}
+														href={`http://localhost:8000/live/${appointment._id}`}
 														style={{ color: '#219F94 !important' }}>
 														Join
-													</Link>{' '}
+													</a>{' '}{' '}
 												</td>
 												<td data-label=''>
 													{' '}
